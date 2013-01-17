@@ -39,6 +39,7 @@ Testing translation of html literals into JS. Output in console...<br/>
       '<   div foo = "bar"  />',
       '<   div foo = \'bar\'  />',
       '<   div foo = {bar}  />',
+      'document.body.appendChild(\n  <div @container style="border: 1px solid red; margin: 5px;">\n    <p>Please fill out this form:</p>\n    <p><label>Name: <input @name style="width:100px;" /></label></p>\n    <p><label>Title: <input @title style="width:100px;" /></label></p>\n  </div>\n);\nthis.container = container;\nname.onkeyup = function(){ this.name = name.value; };\ntitle.onkeyup = function(){ this.name = name.value; };',
     ];
 
     tests.forEach(function(test,i){
