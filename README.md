@@ -78,3 +78,9 @@ So yeah. Good luck :)
 ## Name
 
 My working dirname was `htmllit`, but every time I saw it I kind of read "humility". And then I wanted to be witty, so that's why I went for HuTiMiLityy... ;)
+
+## todos
+
+* Make the `@name` variable assignment work.
+* Generate sourcemap
+* Add more integration tests
