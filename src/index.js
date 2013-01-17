@@ -57,6 +57,8 @@ function reviveTag(tag, _depth){
       });
     }
 
+    str += prefix2+'return dom;\n';
+
     str += prefix+'})()';
   }
 

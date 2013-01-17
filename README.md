@@ -34,6 +34,7 @@ document.body.appendChild(
 	dom.appendChild((function(){
 		var dom = document.createElement('p');
 		dom.appendChild(document.createTextNode('Please fill out this form:'));
+		return dom;
 	})());
 	dom.appendChild(document.createTextNode('\n    '));
 	dom.appendChild((function(){
@@ -44,8 +45,11 @@ document.body.appendChild(
 			dom.appendChild((function(){
 				var dom = document.createElement('input');
 				dom.setAttribute('style', 'width:100px;');
+				return dom;
 			})());
+			return dom;
 		})());
+		return dom;
 	})());
 	dom.appendChild(document.createTextNode('\n    '));
 	dom.appendChild((function(){
@@ -56,15 +60,19 @@ document.body.appendChild(
 			dom.appendChild((function(){
 				var dom = document.createElement('input');
 				dom.setAttribute('style', 'width:100px;');
+				return dom;
 			})());
+			return dom;
 		})());
+		return dom;
 	})());
 	dom.appendChild(document.createTextNode('\n  '));
+	return dom;
 })()
 );
 this.container = container;
 name.onkeyup = function(){ this.name = name.value; };
-title.onkeyup = function(){ this.name = name.value; }; test.html:47
+title.onkeyup = function(){ this.name = name.value; };
 ```
 
 Which, as you can see, is fairly clean code, though very, very verbose.
