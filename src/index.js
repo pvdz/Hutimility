@@ -10,7 +10,6 @@ function translate(input){
   // reconstruct
   return tokens.map(function(token){
     if (token.type !== HTML) return token.value;
-    console.log(token.root)
     return reviveTag(token.root);
   }).join('');
 }
