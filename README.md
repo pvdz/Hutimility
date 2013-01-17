@@ -4,7 +4,7 @@ A source code transformation tool that translates "html literals" into real JS.
 
 In a nutshell; this project uses ZeParser 2 (with html literal support) to parse input source code. It then goes through the results of the parser and translates all html tags to the actual JS code that would generate the intended html (using DOM api's).
 
-This project requires my (ZeParser 2)[http://github.com/qfox/zeparser2] project on the `html` branch (!).
+This project requires my [ZeParser 2](http://github.com/qfox/zeparser2) project on the `html` branch (!).
 
 ## Example
 
