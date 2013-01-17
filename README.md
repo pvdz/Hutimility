@@ -4,7 +4,7 @@ A source code transformation tool that translates "html literals" into real JS.
 
 In a nutshell; this project uses ZeParser 2 (with html literal support) to parse input source code. It then goes through the results of the parser and translates all html tags to the actual JS code that would generate the intended html (using DOM api's).
 
-This project requires my (ZeParser 2)[http://github.com/qfox/zeparser2] project.
+This project requires my (ZeParser 2)[http://github.com/qfox/zeparser2] project on the `html` branch (!).
 
 ## Example
 
@@ -74,3 +74,7 @@ Because of the multiple calls to `setAttribute` and/or `appendChild`, the code h
 Note that the `@name` assignment syntax is not yet working. It's actually not that trivial to properly rewrite code for that one.
 
 So yeah. Good luck :)
+
+## Name
+
+My working dirname was `htmllit`, but every time I saw it I kind of read "humility". And then I wanted to be witty, so that's why I went for HuTiMiLityy... ;)
