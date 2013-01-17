@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <title>HTML Literal Test Suite Page</title>
+</head>
+<body>
+(c) qfox.nl<br/>
+Testing translation of html literals into JS. Output in console...<br/>
+<script src="../lib/zeparser2/src/tok.js"></script>
+<script src="../lib/zeparser2/src/par.js"></script>
+<script src="../src/index.js"></script>
+<script>
+  new function(){
+
+    var tests = [
+      '<div {fool} bar={baz} style="foo:bar;">hello {moody} <b>world</b>!</div>',
+      '<div></div>;',
+      '<div/>',
+      '<div @foo/>',
+      '<div foo/>',
+      '<div foo=bar/>',
+      '<div foo="bar"/>',
+      '<div foo=\'bar\'/>',
+      '<div foo={bar}/>',
+      '<div {foo}/>',
+      '<div>foo</div>',
+      '<div>foo{bar}baz</div>',
+      '<div>{bar}baz</div>',
+      '<div>{bar}baz</div>',
+      '<div><hello/></div>',
+      '<div><bar></bar></div>',
+      '<div><div></div></div>',
+      '<div>foo<div></div></div>',
+      '<div>foo<div>{woot}</div></div>',
+      '<   div/>',
+      '<   div   />',
+      '<div></   div   >',
+      '<   div foo = bar  />',
+      '<   div foo = "bar"  />',
+      '<   div foo = \'bar\'  />',
+      '<   div foo = {bar}  />',
+    ];
+
+    tests.forEach(function(test,i){
+      console.log('testing: ', test);
+      console.log(translate(test));
+      console.log('');
+    });
+
+
+
+  };
+</script>
+</body>
+</html>
