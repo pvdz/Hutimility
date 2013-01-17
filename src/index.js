@@ -45,13 +45,13 @@ function reviveTag(tag, _depth){
 
     if (tag.children) {
       tag.children.forEach(function(child){
-        if (child.type === 'text') str += prefix2+'dom.appendChild(document.createTextNode(\''+child.value.replace(/'/g,'\\\'')+'\'));\n';
+        if (child.type === 'text') str += prefix2+'dom.appendChild(document.createTextNode(\''+child.value.replace(/'/g,'\\\'').replace(/\n/g,'\\n')+'\'));\n';
         else if (child.type === 'tag') str += prefix2+'dom.appendChild('+reviveTag(child.tag, (_depth|0)+1)+');\n';
         else if (child.type === 'dynamic') {
           str +=
             prefix2+'var value = function(){ return '+child.value+'; }();\n' +
             prefix2+'if (typeof value === \'object\' && value !== null) dom.appendChild(result);\n' +
-            prefix2+'else if (typeof value !== \'\') dom.appendChild(document.createTextNode(String(result)));\n' +
+            prefix2+'else if (typeof value !== \'\') dom.appendChild(document.createTextNode(String(result).replace(/\'/g,\'\\\\\\\'\').replace(/\\n/g,\'\\\\n\')));\n' +
           '';
         }
       });

@@ -10,7 +10,6 @@ This project requires my (ZeParser 2)[http://github.com/qfox/zeparser2] project.
 
 ```js
 ...
-
 document.body.appendChild(
   <div @container style="border: 1px solid red; margin: 5px;">
     <p>Please fill out this form:</p>
@@ -31,14 +30,12 @@ document.body.appendChild(
   (function(){
 	var dom = document.createElement('div');
 	dom.setAttribute('style', 'border: 1px solid red; margin: 5px;');
-	dom.appendChild(document.createTextNode('
-    '));
+	dom.appendChild(document.createTextNode('\n    '));
 	dom.appendChild((function(){
 		var dom = document.createElement('p');
 		dom.appendChild(document.createTextNode('Please fill out this form:'));
 	})());
-	dom.appendChild(document.createTextNode('
-    '));
+	dom.appendChild(document.createTextNode('\n    '));
 	dom.appendChild((function(){
 		var dom = document.createElement('p');
 		dom.appendChild((function(){
@@ -50,8 +47,7 @@ document.body.appendChild(
 			})());
 		})());
 	})());
-	dom.appendChild(document.createTextNode('
-    '));
+	dom.appendChild(document.createTextNode('\n    '));
 	dom.appendChild((function(){
 		var dom = document.createElement('p');
 		dom.appendChild((function(){
@@ -63,13 +59,12 @@ document.body.appendChild(
 			})());
 		})());
 	})());
-	dom.appendChild(document.createTextNode('
-  '));
+	dom.appendChild(document.createTextNode('\n  '));
 })()
 );
 this.container = container;
 name.onkeyup = function(){ this.name = name.value; };
-title.onkeyup = function(){ this.name = name.value; };
+title.onkeyup = function(){ this.name = name.value; }; test.html:47
 ```
 
 Which, as you can see, is fairly clean code, though very, very verbose.
