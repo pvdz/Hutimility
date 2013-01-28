@@ -32,6 +32,7 @@ Testing translation of html literals into JS. Output in console...<br/>
       '<div><div></div></div>',
       '<div>foo<div></div></div>',
       '<div>foo<div>{woot}</div></div>',
+
       '<   div/>',
       '<   div   />',
       '<div></   div   >',
@@ -39,16 +40,29 @@ Testing translation of html literals into JS. Output in console...<br/>
       '<   div foo = "bar"  />',
       '<   div foo = \'bar\'  />',
       '<   div foo = {bar}  />',
-      'document.body.appendChild(\n  <div @container style="border: 1px solid red; margin: 5px;">\n    <p>Please fill out this form:</p>\n    <p><label>Name: <input @name style="width:100px;" /></label></p>\n    <p><label>Title: <input @title style="width:100px;" /></label></p>\n  </div>\n);\nthis.container = container;\nname.onkeyup = function(){ this.name = name.value; };\ntitle.onkeyup = function(){ this.name = name.value; };',
+
+      '<div\n></div>',
+      '<\ndiv/>',
+      '<div/\n>',
+      '<div\nfoo=bar\nboo=baz/>',
+      '<div foo\n=bar/>',
+      '<div foo=\nbar/>',
+      '<div foo=\n"bar"/>',
+      '<div foo=\n\'bar\'/>',
+      '<div foo=\n{bar}/>',
+      '<div foo=\n{\nfoo + bar\n}/>',
+      'var x = <div/>;\nvar y = <input/>;',
+
+      'function start(){\n  this.container = document.body.appendChild(\n    <div @container style="border: 1px solid red; margin: 5px;">\n      <p>Please fill out this form:</p>\n      <p><label>Name: <input @name style="width:100px;" /></label></p>\n      <p><label>Title: <input @title style="width:100px;" /></label></p>\n   </div>\n  );\n  this.container.querySelectorAll(\'input\')[0].onkeyup = function(){ this.name = this.value; console.log(\'name=\',this.value); };\n  this.container.querySelectorAll(\'input\')[1].onkeyup = function(){ this.name = this.value; console.log(\'title=\',this.value); };\n}',
+      'function start(){\n  this.container = document.body.appendChild(\n    <div @container style="border: 1px solid red; margin: 5px;">\n      <p>Please fill out this form:</p>\n      <p><label>Name: <input @name style="width:100px;" /></label></p>\n      <p><label>Fail: <input @title style="width:100px;" /></label></p>\n   </div>\n  );\n  this.container.querySelectorAll(\'input\')[0].onkeyup = function(){ this.name = this.value; console.log(\'name=\',this.value); };\n  this.container.querySelectorAll(\'input\')[1].onkeyup = function(){ fail; this.name = this.value; console.log(\'title=\',this.value); };\n}',
     ];
 
     tests.forEach(function(test,i){
-      console.log('testing: ', test);
-      console.log(translate(test));
+      console.warn('testing:');
+      console.log(test);
+      console.log(new Hutimility().translate(test));
       console.log('');
     });
-
-
 
   };
 </script>
