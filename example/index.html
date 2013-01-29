@@ -4,7 +4,45 @@
 		<title>Random Hutimility source map example</title>
 	</head>
 	<body>
-		<script src="index.js"></script>
-		<script>start();</script>
+  <script src="../lib/zeparser2/src/tok.js"></script>
+  <script src="../lib/zeparser2/src/par.js"></script>
+  <script src="../src/index.js"></script>
+    <script>
+      (function(url, callback){
+        // ajax derp
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+          if (xhr.readyState == 4 || xhr.readyState=='complete') {
+            if (xhr.status == 200) {
+              callback(xhr.responseText);
+            }
+          }
+        };
+        xhr.open('GET', url, true);
+        xhr.send(null);
+      })('index.src.js', function(src){
+        var hm = new Hutimility().translate(src, true);
+
+        // add actual files to the map
+        var smap = hm.sourcemap;
+        smap.file = 'foo';
+        smap.sourceRoot = '/';
+        smap.sources = ['index.src.js'];
+
+        // create a virtual file to serve as a handle for the source map file
+        var url = window.URL.createObjectURL(new Blob([JSON.stringify(hm.sourcemap)+'\n//@ sourceURL=dynamic_source_map']));
+        url = url.replace('%3A',':');
+        url = url.slice(url.lastIndexOf('/')+1);
+
+        // add the translated source, make it point to this source map
+        var source = hm.result+url+'\n//@ sourceURL=foo';
+        var s2 = document.createElement('script');
+        s2.innerHTML = source;
+        document.body.appendChild(s2);
+
+        // start will be a global
+        start();
+      });
+    </script>
 	</body>
 </html>

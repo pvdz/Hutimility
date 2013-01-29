@@ -60,7 +60,9 @@ Testing translation of html literals into JS. Output in console...<br/>
     tests.forEach(function(test,i){
       console.warn('testing:');
       console.log(test);
-      console.log(new Hutimility().translate(test));
+      var hm = new Hutimility().translate(test);
+      console.log(hm.sourcemap);
+      console.log(hm.result);
       console.log('');
     });
 

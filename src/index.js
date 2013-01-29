@@ -6,14 +6,20 @@ function Hutimility(){
 }
 Hutimility.prototype = {
 
+  result: '',
+  sourcemap: null,
+
   run: function(){
 
   },
 
   /**
    * Parse input with zeparser2, rewrite html literals to proper (DOM api) js
+   *
+   * @param {string} input
+   * @param {string|boolean} [sourcemapUrl] The path of the sourcemap, or true if it will be immediately appended
    */
-  translate: function(input){
+  translate: function(input, sourcemapUrl){
     var tokens = this.tokenize(input);
 
     // reconstruct
@@ -45,7 +51,10 @@ Hutimility.prototype = {
       return result;
     },this).join('');
 
-    str += '\n//@ sourceMappingURL=source.map\n';
+    if (sourcemapUrl) {
+      str += '\n//@ sourceMappingURL=';
+      if (typeof sourcemapUrl === 'string') str += sourcemapUrl+'\n';
+    }
 
     var sobj = {
       version: 3,
@@ -56,9 +65,11 @@ Hutimility.prototype = {
       mappings: sourceMap,
     };
 
-    console.log("Source map:", JSON.stringify(sobj));
+//    console.log("Source map:", JSON.stringify(sobj));
+    this.sourcemap = sobj;
+    this.result = str;
 
-    return str;
+    return this;
   },
 
   tokenize: function(input){
